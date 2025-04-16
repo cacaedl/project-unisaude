@@ -1,0 +1,143 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and background */
+body {
+    font-family: 'League Spartan', sans-serif;
+    background: linear-gradient(to bottom, #00aaff, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 0px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 -2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+/* Upload Box */
+.upload-box {
+    background: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Heading */
+.upload-box h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 2px dashed #0077cc;
+    padding: 80px 20px; /* Menambah jarak dalam kotak upload */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.upload-area:hover {
+    background-color: #f0f8ff;
+}
+
+.upload-area .file-input {
+    display: none;
+}
+
+.upload-label {
+    display: inline-block;
+    color: #0077cc;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-label .cloud-icon {
+    font-size: 32px;
+    display: block;
+}
+
+/* Button */
+.upload-btn, .cancel-btn {
+    margin-top: 10px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.upload-btn:hover, .cancel-btn:hover {
+    background-color: #005f8a;
+}
+
+.cancel-btn {
+    background-color: #f44336; /* Red for cancel */
+}
+
+/* Preview Files */
+.files {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.files .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 200px; /* Menentukan lebar preview file */
+    box-sizing: border-box;
+    justify-content: space-between; /* Mengatur tombol di sebelah kanan preview */
+}
+
+.files .row img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.files .row p {
+    margin: 0;
+    flex-grow: 1;
+}
+
+.files .row .btn-group {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end; /* Mengatur tombol-tombol di kanan */
+}

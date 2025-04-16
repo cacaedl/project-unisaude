@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload File Preview</title>
+
+  <!-- Dropzone CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .upload-box {
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .dropzone {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 30px;
+      background: #f9f9f9;
+    }
+
+    .dz-preview {
+      display: inline-block;
+      text-align: center;
+      margin: 10px;
+      width: 100px;
+      position: relative;
+    }
+
+    .dz-image {
+      width: 100%;
+      height: 100px;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .dz-image i {
+      font-size: 32px;
+      color: #444;
+    }
+
+    .dz-remove {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4444;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .dz-filename {
+      font-size: 12px;
+      margin-top: 5px;
+      word-break: break-word;
+    }
+
+    .dz-size {
+      font-size: 11px;
+      color: #777;
+    }
+
+    .dz-progress {
+      height: 5px;
+      background: #ddd;
+      margin-top: 4px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .dz-upload {
+      background: #007bff;
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .upload-actions {
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      background-color: #ddd;
+      color: #333;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div class="upload-box">
+  <div class="upload-title">Upload your file</div>
+
+  <form action="/upload" class="dropzone" id="customDropzone">
+    <!-- Dropzone auto appends previews here -->
+  </form>
+
+  <div class="upload-actions">
+    <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+    <button class="btn btn-primary" id="uploadBtn">Upload</button>
+  </div>
+</div>
+
+<!-- Dropzone JS -->
+<script src="../../js/dropzone.min.js"></script>
+
+<script>
+  Dropzone.autoDiscover = false;
+
+  const myDropzone = new Dropzone("#customDropzone", {
+    url: "/upload",
+    autoProcessQueue: false,
+    acceptedFiles: ".xlsx",
+    previewTemplate: `
+      <div class="dz-preview dz-file-preview">
+        <div class="dz-remove">&times;</div>
+        <div class="dz-image"><i class="fas fa-file-alt"></i></div>
+        <div class="dz-filename"><span data-dz-name></span></div>
+        <div class="dz-size"><span data-dz-size></span></div>
+        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+      </div>
+    `
+  });
+
+  // Hapus file dengan tombol X
+  myDropzone.on("addedfile", function(file) {
+    file.previewElement.querySelector(".dz-remove").onclick = function () {
+      myDropzone.removeFile(file);
+    };
+  });
+
+  // Tombol upload
+  document.getElementById("uploadBtn").onclick = function () {
+    myDropzone.processQueue();
+  };
+
+  // Tombol cancel
+  document.getElementById("cancelBtn").onclick = function () {
+    myDropzone.removeAllFiles(true);
+  };
+</script>
+
+</body>
+</html>

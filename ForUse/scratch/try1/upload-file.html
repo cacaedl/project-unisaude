@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.7.0/dist/min/dropzone.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="upload-box">
+            <h1>Upload your file</h1>
+            <!-- Dropzone.js area -->
+            <form action="/target-url" class="dropzone" id="dropzone">
+                <div class="dz-message">
+                    <span class="cloud-icon">☁️</span>
+                    <span>Choose Your File</span>
+                </div>
+            </form>
+            <button class="upload-btn" id="startUploadBtn">Upload</button>
+        </div>
+    </div>
+
+    <div class="table table-striped files" id="previews"></div>
+
+    <script src="../../js/dropzone.min.js"></script>
+
+    <script src="upload-file.js"></script>
+
+    
+    
+    
+</body>
+</html>
